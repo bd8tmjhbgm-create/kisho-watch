@@ -1,111 +1,116 @@
+
 <!doctype html>
-<html lang="ja">
+<html lang="ja" data-theme="system">
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
-<meta name="theme-color" content="#0b1220">
 <meta name="apple-mobile-web-app-capable" content="yes">
-<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
-<meta name="apple-mobile-web-app-title" content="KISHO WATCH">
-<title>KISHO / WATCH</title>
+<meta name="apple-mobile-web-app-title" content="気象ウォッチ">
+<meta name="color-scheme" content="light dark">
+<title>気象ウォッチ</title>
 <style>
-:root{color-scheme:dark;--bg:#080d18;--panel:#111a2b;--panel2:#172238;--line:#26344d;--text:#edf4ff;--muted:#9aabc5;--cyan:#65d9f2;--amber:#ffc66d;--red:#ff747d}
-*{box-sizing:border-box}body{margin:0;background:radial-gradient(ellipse at top,#16243c 0,#080d18 55%);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;min-height:100vh}
-main{max-width:760px;margin:auto;padding:calc(18px + env(safe-area-inset-top)) 16px calc(30px + env(safe-area-inset-bottom))}
-header{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:22px}.eyebrow{font-size:10px;letter-spacing:.2em;color:var(--cyan);font-weight:800}.brand{font-size:25px;letter-spacing:.07em;font-weight:850;margin:4px 0}.subtitle{font-size:11px;color:var(--muted)}.mark{width:48px;height:48px;border:1px solid #3d5b7c;border-radius:16px;display:grid;place-items:center;background:#12223a;font-size:24px}
-.status{display:flex;align-items:center;gap:8px;color:var(--muted);font-size:12px;margin:12px 0 16px}.dot{width:7px;height:7px;border-radius:50%;background:var(--cyan);box-shadow:0 0 12px #65d9f2}
-h2{font-size:16px;margin:0 0 12px}.section{margin-top:22px}.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}.tile,.panel{background:linear-gradient(145deg,#141f33,#0f1727);border:1px solid var(--line);border-radius:18px;padding:16px}.tile{min-height:128px;text-decoration:none;color:inherit;display:flex;flex-direction:column;justify-content:space-between}.tile .emoji{font-size:22px}.tile strong{display:block;font-size:14px;margin-top:12px}.tile small{display:block;color:var(--muted);font-size:11px;margin-top:5px;line-height:1.5}.tile:active,button:active{transform:scale(.99)}.panel{padding:16px}.row{display:flex;align-items:center;justify-content:space-between;gap:10px}.muted{color:var(--muted)}.small{font-size:11px;line-height:1.6}.btn{border:1px solid #38506e;background:#182942;color:var(--text);border-radius:12px;padding:10px 13px;font-size:12px;font-weight:700;cursor:pointer}.quake{padding:14px 0;border-bottom:1px solid var(--line)}.quake:last-child{border-bottom:0;padding-bottom:0}.quake:first-child{padding-top:2px}.quakehead{display:flex;align-items:center;gap:9px}.scale{display:inline-grid;place-items:center;min-width:45px;padding:7px 5px;border-radius:10px;background:#24344c;font-size:12px;font-weight:850}.scale.high{background:#5c202e;color:#ffdfe2}.qtitle{font-weight:750;font-size:14px}.qmeta{font-size:11px;color:var(--muted);margin-top:6px;line-height:1.6}.error{border:1px solid #70444b;background:#291b27;color:#ffd7db;padding:12px;border-radius:12px;font-size:12px;line-height:1.6}.foot{margin-top:24px;border-top:1px solid var(--line);padding-top:14px;color:var(--muted);font-size:10px;line-height:1.7}.foot a{color:var(--cyan)}.tag{font-size:10px;color:var(--cyan);border:1px solid #28576a;border-radius:7px;padding:4px 7px}.sectionhead{display:flex;justify-content:space-between;align-items:center;gap:10px;margin-bottom:12px}
-@media(min-width:560px){.grid{grid-template-columns:repeat(4,1fr)}.tile{min-height:150px}}
+:root{color-scheme:dark;--bg:#0b1220;--panel:#131e30;--sub:#1a2940;--line:#2b3a50;--text:#edf4ff;--muted:#a5b4ca;--blue:#66c7ff}
+:root[data-theme="light"]{color-scheme:light;--bg:#f2f6fb;--panel:#fff;--sub:#eaf1f9;--line:#d5dfeb;--text:#17263b;--muted:#5d6d82;--blue:#087db8}
+@media(prefers-color-scheme:light){:root[data-theme="system"]{color-scheme:light;--bg:#f2f6fb;--panel:#fff;--sub:#eaf1f9;--line:#d5dfeb;--text:#17263b;--muted:#5d6d82;--blue:#087db8}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font-family:-apple-system,BlinkMacSystemFont,sans-serif;line-height:1.55}
+main{max-width:760px;margin:auto;padding:24px 16px}
+header,.row{display:flex;justify-content:space-between;align-items:center;gap:12px}
+header{align-items:flex-start;margin-bottom:18px}
+h1{font-size:26px;margin:0}
+h2{font-size:17px;margin:0 0 12px}
+p,.muted{font-size:13px;color:var(--muted)}
+.themes{display:flex;gap:4px;background:var(--sub);padding:4px;border-radius:12px}
+button{border:1px solid var(--line);border-radius:9px;background:var(--sub);color:var(--text);padding:8px;font-size:12px}
+.themes button{border:0;background:transparent;color:var(--muted)}
+.themes button[aria-pressed=true]{background:var(--panel);color:var(--text)}
+.panel{background:var(--panel);border:1px solid var(--line);border-radius:16px;padding:16px;margin:12px 0}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+a.link{display:block;text-decoration:none;color:var(--text);background:var(--sub);border:1px solid var(--line);border-radius:12px;padding:13px}
+.link strong,.link span{display:block}
+.link strong{font-size:14px}
+.link span{font-size:12px;color:var(--muted);margin-top:5px}
+.quake{border-top:1px solid var(--line);padding:10px 0}
+.quake small{display:block;color:var(--muted)}
+@media(max-width:420px){header{display:block}.themes{width:max-content;margin-top:8px}.grid{gap:8px}.link{padding:10px!important}}
 </style>
 </head>
 <body>
 <main>
 <header>
- <div><div class="eyebrow">PERSONAL OBSERVATION SYSTEM</div><div class="brand">KISHO / WATCH</div><div class="subtitle">WEATHER · EARTHQUAKE · DISASTER INFO</div></div>
- <div class="mark" aria-hidden="true">⌁</div>
+<div><p>WEATHER · EARTHQUAKE</p><h1>🌦️ 気象ウォッチ</h1><p>気象・地震情報をすばやく確認</p></div>
+<div><p>表示テーマ</p><div class="themes">
+<button data-mode="system" aria-pressed="true">端末設定</button>
+<button data-mode="light" aria-pressed="false">ライト</button>
+<button data-mode="dark" aria-pressed="false">ダーク</button>
+</div></div>
 </header>
-<div class="status"><span class="dot"></span><span id="statusText">地震情報を取得する準備ができました</span></div>
+<section class="panel">
+<h2>🌤️ 気象情報</h2>
 <div class="grid">
- <a class="tile" href="https://www.jma.go.jp/bosai/map.html#contents=warning" target="_blank" rel="noopener"><span class="emoji">⛈️</span><div><strong>気象警報・注意報</strong><small>地域別の公式発表を確認</small></div></a>
- <a class="tile" href="https://www.jma.go.jp/bosai/nowc/" target="_blank" rel="noopener"><span class="emoji">🌧️</span><div><strong>雨雲・降水ナウキャスト</strong><small>雨雲の動きをチェック</small></div></a>
- <a class="tile" href="https://www.jma.go.jp/bosai/map.html#contents=earthquake_map" target="_blank" rel="noopener"><span class="emoji">🌏</span><div><strong>地震情報・震源</strong><small>気象庁の地震情報マップ</small></div></a>
- <a class="tile" href="https://www.jma.go.jp/bosai/map.html#contents=tsunami" target="_blank" rel="noopener"><span class="emoji">🌊</span><div><strong>津波情報</strong><small>警報・注意報を公式確認</small></div></a>
+<a class="link" href="https://www.jma.go.jp/bosai/warning/" target="_blank" rel="noopener"><strong>⚠️ 気象警報・注意報</strong><span>大雨・暴風・大雪など ↗</span></a>
+<a class="link" href="https://www.jma.go.jp/bosai/nowc/" target="_blank" rel="noopener"><strong>🌧️ 雨雲レーダー</strong><span>雨雲の動きを確認 ↗</span></a>
+<a class="link" href="https://www.jma.go.jp/bosai/map.html#contents=earthquake_map" target="_blank" rel="noopener"><strong>🌏 地震情報</strong><span>震源・震度など ↗</span></a>
+<a class="link" href="https://www.jma.go.jp/bosai/map.html#contents=tsunami" target="_blank" rel="noopener"><strong>🌊 津波情報</strong><span>津波警報・注意報 ↗</span></a>
 </div>
-<section class="section">
- <div class="sectionhead"><h2>最近の地震情報</h2><button class="btn" id="refreshBtn">↻ 更新</button></div>
- <div class="panel">
-  <div class="row" style="margin-bottom:12px"><span class="muted small">最新の地震情報（最大10件）</span><span class="tag">LIVE DATA</span></div>
-  <div id="quakeList" aria-live="polite"><div class="muted small">地震情報を読み込んでいます…</div></div>
-  <div id="errorBox" style="display:none;margin-top:12px"></div>
- </div>
 </section>
-<section class="section">
- <h2>公式情報センター</h2>
- <div class="panel">
-  <div class="row"><div><strong>気象庁 防災情報</strong><div class="muted small">警報・台風・地震・火山など</div></div><a class="btn" href="https://www.jma.go.jp/bosai/" target="_blank" rel="noopener">開く ↗</a></div>
-  <div style="height:1px;background:var(--line);margin:14px 0"></div>
-  <div class="row"><div><strong>気象庁 地震情報</strong><div class="muted small">震源・震度・津波情報</div></div><a class="btn" href="https://www.jma.go.jp/bosai/map.html#contents=earthquake_map" target="_blank" rel="noopener">開く ↗</a></div>
- </div>
+<section class="panel">
+<div class="row"><h2>🫨 最近の地震</h2><button id="refresh">↻ 更新</button></div>
+<div id="quakes" class="muted">読み込み中…</div>
+<p id="updated"></p>
 </section>
-<div class="foot">
- <strong>データについて</strong><br>
- 地震一覧はP2P地震情報 JSON API v2を利用します。気象・津波の各タイルは気象庁の公式ページへ移動します。情報の遅延・欠落・通信障害があり得ます。<br>
- このアプリは補助的な閲覧ツールであり、緊急地震速報や災害警報の受信・通知を保証しません。避難等の判断は自治体・気象庁・消防などの公式情報を優先してください。<br><br>
- <a href="https://www.p2pquake.net/develop/" target="_blank" rel="noopener">P2P地震情報 APIについて</a> · <a href="https://www.jma.go.jp/bosai/" target="_blank" rel="noopener">気象庁</a><br>
- <span id="updatedAt">最終更新：未取得</span>
-</div>
+<section class="panel">
+<h2>📌 利用上の注意</h2>
+<p>このアプリは情報確認用です。緊急地震速報や避難指示を通知するものではありません。災害時は気象庁・自治体などの公式発表を確認し、安全を最優先にしてください。</p>
+</section>
+<p style="text-align:center">気象ウォッチ · 情報確認用</p>
 </main>
 <script>
-const list = document.getElementById('quakeList');
-const errorBox = document.getElementById('errorBox');
-const statusText = document.getElementById('statusText');
-const updatedAt = document.getElementById('updatedAt');
-const scaleLabel = n => {
- const map={10:'震度1',20:'震度2',30:'震度3',40:'震度4',45:'震度5弱',50:'震度5強',55:'震度6弱',60:'震度6強',70:'震度7'};
- return map[n] || (n===null||n===undefined?'震度不明':`震度コード ${n}`);
-};
-function safe(v){return v===null||v===undefined||v===''?'不明':String(v)}
-function render(items){
- const quakes=(Array.isArray(items)?items:[]).filter(x=>x && x.code===551 && x.earthquake).slice(0,10);
- if(!quakes.length){list.innerHTML='<div class="muted small">表示できる地震情報がありません。公式情報リンクも確認してください。</div>';return}
- list.innerHTML=quakes.map(x=>{
-   const q=x.earthquake||{}, h=q.hypocenter||{}, scale=q.maxScale;
-   const high=typeof scale==='number' && scale>=45;
-   const time=safe(q.time || x.time);
-   const place=safe(h.name);
-   const mag=(h.magnitude!==undefined && h.magnitude!==null && h.magnitude!=='')?'M'+h.magnitude:'規模不明';
-   const depth=safe(h.depth);
-   const tsunami=q.domesticTsunami;
-   const tsunamiText=tsunami==='None'?'津波の心配なし（発表情報）':(tsunami==='Checking'?'津波確認中':(tsunami==='Unknown'?'津波情報を確認':(tsunami?'津波情報あり':'津波情報は公式ページで確認')));
-   return `<article class="quake"><div class="quakehead"><span class="scale ${high?'high':''}">${scaleLabel(scale)}</span><div><div class="qtitle">${place}</div><div class="qmeta">${time} · ${mag} · 深さ ${depth}</div></div></div><div class="qmeta">${tsunamiText}</div></article>`;
- }).join('');
+(()=>{
+const root=document.documentElement;
+const buttons=document.querySelectorAll('[data-mode]');
+let mode='system';
+try{mode=localStorage.getItem('kisho-theme')||'system'}catch(e){}
+function setMode(m){
+mode=m;root.dataset.theme=m;
+buttons.forEach(b=>b.setAttribute('aria-pressed',String(b.dataset.mode===m)));
+try{localStorage.setItem('kisho-theme',m)}catch(e){}
 }
-async function loadQuakes(){
- const btn=document.getElementById('refreshBtn');
- btn.disabled=true;btn.textContent='取得中…';statusText.textContent='地震情報を取得中';
- errorBox.style.display='none';
- try{
-   const controller=new AbortController();
-   const timeout=setTimeout(()=>controller.abort(),10000);
-   const res=await fetch('https://api.p2pquake.net/v2/history?codes=551&limit=10',{cache:'no-store',signal:controller.signal});
-   clearTimeout(timeout);
-   if(!res.ok) throw new Error('APIからHTTP '+res.status+' が返されました');
-   const data=await res.json();
-   render(data);
-   const now=new Date();
-   updatedAt.textContent='最終更新：'+now.toLocaleString('ja-JP',{hour12:false});
-   statusText.textContent='地震情報を取得しました';
- }catch(e){
-   statusText.textContent='地震情報を取得できません';
-   errorBox.style.display='block';
-   errorBox.className='error';
-   errorBox.textContent='現在、地震データを取得できません。通信状況を確認するか、気象庁の公式情報を開いてください。 ('+(e.name==='AbortError'?'タイムアウト':e.message)+')';
-   if(!list.innerHTML.trim()) list.innerHTML='<div class="muted small">取得待ち</div>';
- }finally{btn.disabled=false;btn.textContent='↻ 更新'}
+buttons.forEach(b=>b.addEventListener('click',()=>setMode(b.dataset.mode)));
+setMode(mode);
+const list=document.getElementById('quakes');
+const updated=document.getElementById('updated');
+const refresh=document.getElementById('refresh');
+function fmt(t){
+if(!t)return '時刻不明';
+const d=new Date(t);
+return isNaN(d)?'時刻不明':d.toLocaleString('ja-JP',{month:'numeric',day:'numeric',hour:'2-digit',minute:'2-digit'});
 }
-document.getElementById('refreshBtn').addEventListener('click',loadQuakes);
-loadQuakes();
-setInterval(loadQuakes,60000);
+async function load(){
+refresh.disabled=true;refresh.textContent='取得中…';
+try{
+const r=await fetch('https://api.p2pquake.net/v2/history?codes=551&limit=10',{cache:'no-store'});
+if(!r.ok)throw Error();
+const data=await r.json();
+list.replaceChildren();
+if(!data.length){list.textContent='表示できる地震情報がありません。';}
+data.forEach(item=>{
+const q=item.earthquake||{};
+const el=document.createElement('div');el.className='quake';
+const title=document.createElement('strong');
+title.textContent=q.hypocenter?.name||'震源情報なし';
+const small=document.createElement('small');
+const scales={10:'震度1',20:'震度2',30:'震度3',40:'震度4',45:'震度5弱',50:'震度5強',55:'震度6弱',60:'震度6強',70:'震度7'};
+small.textContent=fmt(q.time)+' · '+(scales[q.maxScale]||'震度情報');
+el.append(title,small);list.append(el);
+});
+updated.textContent='最終取得：'+new Date().toLocaleTimeString('ja-JP',{hour:'2-digit',minute:'2-digit'});
+}catch(e){list.textContent='取得できませんでした。通信を確認するか、公式の地震情報をご覧ください。';updated.textContent='';}
+finally{refresh.disabled=false;refresh.textContent='↻ 更新';}
+}
+refresh.addEventListener('click',load);
+load();setInterval(load,60000);
+})();
 </script>
 </body>
 </html>
